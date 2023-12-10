@@ -9,6 +9,7 @@ const languages = [
   'go',
   'c',
   'cpp',
+  'python',
 ] as const;
 type Language = (typeof languages)[number];
 
