@@ -2,7 +2,7 @@ import { Button, Flex, Select } from '@mantine/core';
 import { Editor, OnMount } from '@monaco-editor/react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-const languages = ['javascript', 'rust'] as const;
+const languages = ['javascript', 'rust', 'typescript', 'go'] as const;
 type Language = (typeof languages)[number];
 
 export const CodeEditor: React.FC = () => {
