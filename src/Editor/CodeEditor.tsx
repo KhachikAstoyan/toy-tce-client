@@ -11,19 +11,7 @@ import {
 } from '@mantine/core';
 import { Editor, OnMount } from '@monaco-editor/react';
 import React, { useCallback, useRef, useState } from 'react';
-
-const languages = [
-  'javascript',
-  'rust',
-  'typescript',
-  'go',
-  'c',
-  'cpp',
-  'python',
-  'java',
-  'bash',
-] as const;
-type Language = (typeof languages)[number];
+import { languages, Language } from './contants';
 
 export const CodeEditor: React.FC = () => {
   const [output, setOutput] = useState('');
@@ -83,6 +71,9 @@ export const CodeEditor: React.FC = () => {
               value={language}
               // @ts-expect-error
               onChange={setLanguage}
+              render
+              searchable
+              checkIconPosition='right'
               placeholder="Language:"
             />
             <NumberInput
