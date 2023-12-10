@@ -1,8 +1,8 @@
-import { Button, Select } from '@mantine/core';
+import { Button, Flex, Select } from '@mantine/core';
 import { Editor, OnMount } from '@monaco-editor/react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-const languages = ['javascript', 'typescript'] as const;
+const languages = ['javascript', 'rust'] as const;
 type Language = (typeof languages)[number];
 
 export const CodeEditor: React.FC = () => {
@@ -33,7 +33,7 @@ export const CodeEditor: React.FC = () => {
           setOutput(data.output);
         });
     }
-  }, [editorRef]);
+  }, [editorRef, language]);
 
   return (
     <div className="p-5">
@@ -59,7 +59,12 @@ export const CodeEditor: React.FC = () => {
           />
         </div>
         <div>
-          <Button onClick={submitHandler}>Run</Button>
+          <Flex gap={4}>
+            <Button onClick={submitHandler}>Run</Button>
+            <Button variant="light" onClick={() => setOutput('')}>
+              Clear
+            </Button>
+          </Flex>
           <div>
             Output:
             <pre>{output}</pre>
