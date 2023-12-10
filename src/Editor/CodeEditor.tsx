@@ -69,6 +69,8 @@ export const CodeEditor: React.FC = () => {
           language={language}
           options={{
             fontSize,
+            scrollBeyondLastLine: false,
+            minimap: { enabled: false },
           }}
           defaultValue={''}
           onMount={handleEditorDidMount}
