@@ -21,6 +21,7 @@ const languages = [
   'cpp',
   'python',
   'java',
+  'bash',
 ] as const;
 type Language = (typeof languages)[number];
 
@@ -72,7 +73,7 @@ export const CodeEditor: React.FC = () => {
           defaultValue={''}
           onMount={handleEditorDidMount}
         />
-        <div className="p-10 bg-zinc-900 relative">
+        <div className="flex flex-col p-10 bg-zinc-900 relative max-h-screen">
           <Group mb={10}>
             <Select
               data={[...languages]}
@@ -99,10 +100,12 @@ export const CodeEditor: React.FC = () => {
             </Button>
           </Flex>
           <Divider className="my-10" />
-          <div>
+          <div className="max-h-full overflow-y-hidden">
             <LoadingOverlay visible={loading} overlayProps={{ blur: 2 }} />
             <Title order={3}>Output</Title>
-            <Code block>{output}</Code>
+            <Code className="max-h-full overflow-y-scroll" block>
+              {output}
+            </Code>
           </div>
         </div>
       </div>
