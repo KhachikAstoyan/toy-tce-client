@@ -3,7 +3,9 @@ import {
   Code,
   Divider,
   Flex,
+  Group,
   LoadingOverlay,
+  NumberInput,
   Select,
   Title,
 } from '@mantine/core';
@@ -25,6 +27,7 @@ export const CodeEditor: React.FC = () => {
   const [output, setOutput] = useState('');
   const [language, setLanguage] = useState<Language>(languages[0]);
   const [loading, setLoading] = useState(false);
+  const [fontSize, setFontSize] = useState(16);
   const editorRef = useRef<any>(null);
 
   const handleEditorDidMount: OnMount = (editor) => {
@@ -62,11 +65,14 @@ export const CodeEditor: React.FC = () => {
           height="100vh"
           defaultLanguage="javascript"
           language={language}
+          options={{
+            fontSize,
+          }}
           defaultValue={''}
           onMount={handleEditorDidMount}
         />
         <div className="p-10 bg-zinc-900 relative">
-          <div className="w-56 mb-5">
+          <Group mb={10}>
             <Select
               data={[...languages]}
               label="Language:"
@@ -75,7 +81,14 @@ export const CodeEditor: React.FC = () => {
               onChange={setLanguage}
               placeholder="Language:"
             />
-          </div>
+            <NumberInput
+              defaultValue={16}
+              placeholder="Font size"
+              label="Font size"
+              value={fontSize}
+              onChange={(v) => setFontSize(Number(v))}
+            />
+          </Group>
           <Flex gap={4}>
             <Button onClick={submitHandler}>Run</Button>
             <Button variant="light" onClick={() => setOutput('')}>
