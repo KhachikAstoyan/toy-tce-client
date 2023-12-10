@@ -3,7 +3,10 @@ import { CodeEditor } from './Editor/CodeEditor';
 
 function App() {
   return (
-    <MantineProvider>
+    <MantineProvider
+      // @ts-expect-error
+      defaultColorScheme="dark"
+    >
       <CodeEditor />
     </MantineProvider>
   );
