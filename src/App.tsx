@@ -1,9 +1,13 @@
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, createTheme } from '@mantine/core';
 import { CodeEditor } from './Editor/CodeEditor';
+
+const theme = createTheme({
+  colors: {},
+});
 
 function App() {
   return (
-    <MantineProvider defaultColorScheme="dark">
+    <MantineProvider defaultColorScheme="dark" theme={theme}>
       <CodeEditor />
     </MantineProvider>
   );

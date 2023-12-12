@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Code,
   Divider,
@@ -63,7 +64,7 @@ export const CodeEditor: React.FC = () => {
           defaultValue={''}
           onMount={handleEditorDidMount}
         />
-        <div className="flex flex-col p-10 bg-zinc-900 relative max-h-screen">
+        <Box className="flex flex-col p-10 relative max-h-screen">
           <Group mb={10}>
             <Select
               data={[...languages]}
@@ -73,7 +74,7 @@ export const CodeEditor: React.FC = () => {
               onChange={setLanguage}
               render
               searchable
-              checkIconPosition='right'
+              checkIconPosition="right"
               placeholder="Language:"
             />
             <NumberInput
@@ -93,14 +94,15 @@ export const CodeEditor: React.FC = () => {
             </Button>
           </Flex>
           <Divider className="my-10" />
-          <div className="max-h-full overflow-y-hidden">
+
+          <Flex gap={2} direction="column" className="overflow-hidden">
             <LoadingOverlay visible={loading} overlayProps={{ blur: 2 }} />
             <Title order={3}>Output</Title>
-            <Code className="max-h-full overflow-y-scroll" block>
+            <Code className="max-h-full overflow-y-scroll bg-zinc-800" block>
               {output}
             </Code>
-          </div>
-        </div>
+          </Flex>
+        </Box>
       </div>
     </div>
   );
