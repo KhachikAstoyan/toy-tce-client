@@ -30,7 +30,7 @@ export const CodeEditor: React.FC = () => {
     if (editorRef.current) {
       const code = editorRef.current.getValue();
 
-      fetch('http://localhost:8080/run', {
+      fetch('http://localhost:8080/execute', {
         method: 'POST',
         body: JSON.stringify({
           lang: language,
@@ -42,7 +42,7 @@ export const CodeEditor: React.FC = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          setOutput(data.output);
+          setOutput(data.stdout + data.stderr);
         })
         .finally(() => setLoading(false));
     }
@@ -96,7 +96,7 @@ export const CodeEditor: React.FC = () => {
           <Divider className="my-10" />
 
           <Flex gap={2} direction="column" className="overflow-hidden">
-            <LoadingOverlay visible={loading} overlayProps={{ blur: 2 }} />
+            <LoadingOverlay visible={loading} overlayProps={{ blur: 1 }} />
             <Title order={3}>Output</Title>
             <Code className="max-h-full overflow-y-scroll bg-zinc-800" block>
               {output}

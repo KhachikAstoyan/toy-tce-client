@@ -1,5 +1,6 @@
 import { MantineProvider, createTheme } from '@mantine/core';
-import { CodeEditor } from './Editor/CodeEditor';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './pages/router';
 
 const theme = createTheme({
   colors: {},
@@ -8,7 +9,7 @@ const theme = createTheme({
 function App() {
   return (
     <MantineProvider defaultColorScheme="dark" theme={theme}>
-      <CodeEditor />
+      <RouterProvider router={router} />
     </MantineProvider>
   );
 }
